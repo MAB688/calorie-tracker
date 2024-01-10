@@ -71,7 +71,6 @@ function Form({ onSubmit, onChange, value }) {
         onChange={onChange}
         value={value}
       />
-      <button type="submit">Search</button>
     </form>
   );
 }
