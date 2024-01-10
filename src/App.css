@@ -54,3 +54,15 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  button {
+    background: rgb(211, 216, 253);
+    color: rgb(10, 27, 184);
+    border: 2px solid rgb(10, 27, 184);
+    border-radius: 5px;
+    font-size: 20px;
+  }
+
+  .closed {
+    margin-bottom: 20px;
+  }

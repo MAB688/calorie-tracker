@@ -8,7 +8,7 @@ async function fetchResults(query) {
   try {
     const response = await fetch(`${API_URL}&query=${query}`);
     const json = await response.json();
-    return json.items || [];
+    return json.foods || [];
   } catch (e) {
     throw new Error(e);
   }
@@ -35,28 +35,17 @@ function App() {
         <h2>Food Lookup</h2>
         <Form
           onChange={onSearchChange}
-          //onSubmit={onSearchSubmit}
           value={query}
         />
         <h3>Results</h3>
         <div id="results">
           <div>
             {results.map((food) => (
-              <Food
-                description={food[1].description}
-              />
+              <Food description={food.description} foodNutrients={food.foodNutrients} />
             ))}
           </div>
         </div>
       </main>
-    </div>
-  );
-}
-
-function Food({ description }) {
-  return (
-    <div className="food">
-      {description}
     </div>
   );
 }
@@ -72,6 +61,28 @@ function Form({ onSubmit, onChange, value }) {
         value={value}
       />
     </form>
+  );
+}
+
+function Food({ description, foodNutrients }) {
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <div className="food">
+      <div className={isOpen ? "open" : "closed"}>
+        <h4>{description}</h4>
+        <button onClick={() => setOpen(!isOpen)}>{isOpen ? "-" : "+"}</button>
+      </div>
+      {isOpen && (
+        <ul>
+          {foodNutrients.map((nutrient, index) => (
+            <li key={index}>
+              {nutrient.nutrientName}: {nutrient.value} {nutrient.unitName}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
