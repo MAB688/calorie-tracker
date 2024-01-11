@@ -17,6 +17,7 @@ async function fetchResults(query) {
 function App() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedFood, setSelectedFood] = useState(null);
 
   async function onSearchChange(event) {
     const newQuery = event.target.value;
@@ -28,6 +29,14 @@ function App() {
       setResults([]);
     }
   }
+
+  const openPopup = (food) => {
+    setSelectedFood(food);
+  };
+
+  const closePopup = () => {
+    setSelectedFood(null);
+  };
 
   return (
     <div className="app">
@@ -41,10 +50,15 @@ function App() {
         <div id="results">
           <div>
             {results.map((food) => (
-              <Food description={food.description} foodNutrients={food.foodNutrients} />
+              <Food description={food.description} foodNutrients={food.foodNutrients}
+                onOpenPopup={() => openPopup(food)}
+              />
             ))}
           </div>
         </div>
+        {selectedFood && (
+          <Popup food={selectedFood} onClosePopup={closePopup} />
+        )}
       </main>
     </div>
   );
@@ -64,24 +78,28 @@ function Form({ onSubmit, onChange, value }) {
   );
 }
 
-function Food({ description, foodNutrients }) {
-  const [isOpen, setOpen] = useState(false);
-
+function Food({ description, foodNutrients, onOpenPopup }) {  
   return (
     <div className="food">
-      <div className={isOpen ? "open" : "closed"}>
-        <h4>{description}</h4>
-        <button onClick={() => setOpen(!isOpen)}>{isOpen ? "-" : "+"}</button>
-      </div>
-      {isOpen && (
+      <h4 onClick={() => onOpenPopup(foodNutrients)}>{description}</h4>
+    </div>
+  );
+}
+
+function Popup({ food, onClosePopup }) {
+  return (
+    <div className="popup-overlay">
+      <div className="popup-content">
+        <h2>{food.description}</h2>
         <ul>
-          {foodNutrients.map((nutrient, index) => (
+          {food.foodNutrients.map((nutrient, index) => (
             <li key={index}>
               {nutrient.nutrientName}: {nutrient.value} {nutrient.unitName}
             </li>
           ))}
         </ul>
-      )}
+        <button onClick={onClosePopup}>Close</button>
+      </div>
     </div>
   );
 }
