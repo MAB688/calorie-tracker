@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const API_KEY = "yWYN9ap3LVuWPcjXVPzXSVFpYPgjWL7ohRZKk6xs";
 const API_URL = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${API_KEY}`;
@@ -78,7 +78,7 @@ function Form({ onSubmit, onChange, value }) {
   );
 }
 
-function Food({ description, foodNutrients, onOpenPopup }) {  
+function Food({ description, foodNutrients, onOpenPopup }) {
   return (
     <div className="food">
       <h4 onClick={() => onOpenPopup(foodNutrients)}>{description}</h4>
@@ -86,19 +86,60 @@ function Food({ description, foodNutrients, onOpenPopup }) {
   );
 }
 
+// Move to its own file
 function Popup({ food, onClosePopup }) {
+  const ref = useRef(null);
+  const [serving, setServing] = useState(1);
+
+  function onServingChange(event) {
+    const inputServing = event.target.value;
+    setServing(inputServing);
+  }
+
+  // Clicking outside the popup closes it
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onClosePopup();
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick, true);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick, true);
+    };
+  }, [onClosePopup]);
+
+
+
   return (
     <div className="popup-overlay">
-      <div className="popup-content">
+      <div className="popup-content" ref={ref}>
         <h2>{food.description}</h2>
-        <ul>
-          {food.foodNutrients.map((nutrient, index) => (
-            <li key={index}>
-              {nutrient.nutrientName}: {nutrient.value} {nutrient.unitName}
-            </li>
-          ))}
-        </ul>
         <button onClick={onClosePopup}>Close</button>
+        <button>Add</button>
+        <div className="input-section">
+          <br></br>
+          <h4 className="slider-output">Servings: {serving}</h4>
+          <input
+            classname="input-slider"
+            onChange={onServingChange}
+            type="range"
+            step="0.5"
+            min="0"
+            max="10"
+          />
+        </div>
+        <div className="output-section">
+          <ul>
+            {food.foodNutrients.filter((nutrient) => nutrient.nutrientName === "Energy").map((nutrient, index) => (
+              <li key={index}>
+                {nutrient.nutrientName}: {nutrient.value * serving} {nutrient.unitName}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
