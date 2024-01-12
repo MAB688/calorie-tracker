@@ -111,7 +111,7 @@ function Popup({ food, onClosePopup }) {
     };
   }, [onClosePopup]);
 
-
+  const displayedNutrients = ["Energy", "Protein", "Total lipid (fat)", "Carbohydrate, by difference", "Total Sugars", "Sodium, Na", "Cholesterol"];
 
   return (
     <div className="popup-overlay">
@@ -123,17 +123,18 @@ function Popup({ food, onClosePopup }) {
           <br></br>
           <h4 className="slider-output">Servings: {serving}</h4>
           <input
-            classname="input-slider"
+            className="input-slider"
             onChange={onServingChange}
             type="range"
             step="0.5"
             min="0"
             max="10"
+            value = {serving}
           />
         </div>
         <div className="output-section">
           <ul>
-            {food.foodNutrients.filter((nutrient) => nutrient.nutrientName === "Energy").map((nutrient, index) => (
+            {food.foodNutrients.filter((nutrient) => displayedNutrients.includes(nutrient.nutrientName)).map((nutrient, index) => (
               <li key={index}>
                 {nutrient.nutrientName}: {nutrient.value * serving} {nutrient.unitName}
               </li>
