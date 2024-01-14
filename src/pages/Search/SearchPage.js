@@ -22,6 +22,7 @@ function Search() {
             const fetchedJson = await fetchJson(newQuery);
             setResults(fetchedJson.hints);
             //setPageHistory((prevHistory) => [...prevHistory, fetchedJson.hints]);
+            setPageHistory([]);
             if (fetchedJson._links) {
                 setNextPage(fetchedJson._links.next.href);
             } else {
