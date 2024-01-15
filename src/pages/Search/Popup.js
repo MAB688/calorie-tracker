@@ -1,7 +1,7 @@
 import './Popup.css';
 import React, { useState, useEffect, useRef } from "react";
 
-function Popup({ popupFood, onClosePopup }) {
+function Popup({ popupFood, onClosePopup, onAddFood }) {
     const popupRef = useRef(null);
     const [servingSize, setServingSize] = useState(1);
 
@@ -43,6 +43,19 @@ function Popup({ popupFood, onClosePopup }) {
         return () => { document.removeEventListener("click", handleOutsideClick, true); };
     }, [onClosePopup]);
 
+    const onAddButtonClick = () => {
+        const modifiedFood = {
+            label: (popupFood.food.label),
+            brand: (popupFood.food.brand),
+            calories: (adjustedCalories * servingSize).toFixed(0),
+            protein: (adjustedProtein * servingSize).toFixed(0),
+            fat: (adjustedFat * servingSize).toFixed(0),
+            carb: (adjustedCarbs * servingSize).toFixed(0),
+            fiber: (adjustedFiber * servingSize).toFixed(0),
+      };
+      onAddFood(modifiedFood);
+    }
+
     return (
         <div className="popup-overlay">
             <div className="popup-content" ref={popupRef}>
@@ -50,7 +63,7 @@ function Popup({ popupFood, onClosePopup }) {
                 {popupFood.food.brand && <p>{popupFood.food.brand}</p>}
                 <img src={popupFood.food.image} alt="" />
                 <br></br>
-                <button>Add</button>
+                <button onClick={onAddButtonClick}>Add</button>
                 <div className="input-section">
                     <h4 className="slider-header">Serving Size: {servingSize.toFixed(1)}</h4>
                     <input

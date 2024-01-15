@@ -1,6 +1,7 @@
 import './Search.css';
 import React, { useState } from "react";
 import Popup from './Popup.js'
+import FoodPreview from './FoodPreview.js'
 
 const API_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=04ca9a3c&app_key=6dfb19ff020f2439e857cee0a0e57732";
 
@@ -10,8 +11,11 @@ function Search() {
     const [selectedFood, setSelectedFood] = useState(null);
     const [pageHistory, setPageHistory] = useState([]);
     const [nextPage, setNextPage] = useState("")
+    const [selectedFoodsList, setSelectedFoodsList] = useState([]);
+
     const openPopup = (food) => { setSelectedFood(food); };
     const closePopup = () => { setSelectedFood(null); };
+
 
     // Use for partial and enter search
     async function onSearchChange(event) {
@@ -67,6 +71,41 @@ function Search() {
         }
     }
 
+    const onAddFood = (modifiedFood) => {
+        if (modifiedFood) {
+            setSelectedFoodsList((prevList) => [...prevList, modifiedFood]);
+            closePopup();
+        }
+    }
+
+    const onDeleteFood = (foodToDelete) => {
+        setSelectedFoodsList((prevList) =>
+            prevList.filter((food) => food !== foodToDelete)
+        );
+    };
+
+    const onDoneClick = async () => {
+        try {
+          // Send selectedFoodsList to the backend
+          const response = await fetch('http://localhost:5000/api/foods', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(selectedFoodsList),
+          });
+    
+          if (response.ok) {
+            // Data saved successfully
+            console.log('Selected foods saved successfully!');
+          } else {
+            console.error('Failed to save selected foods.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+
     return (
         <div className="search">
             <h2>Food Search</h2>
@@ -76,29 +115,56 @@ function Search() {
                 value={query}
             />
             <h3>Results</h3>
-            <div id="results">
-                <div>
-                    {results && results.length > 0 ? (
-                        results.map((currFood) => (
-                            <Food
-                                label={currFood.food.label}
-                                brand={currFood.food.brand}
-                                onOpenPopup={() => openPopup(currFood)}
-                            />
-                        ))
+            <div className='results-container'>
+                <div className="results">
+                    <div>
+                        {results && results.length > 0 ? (
+                            results.map((currFood, index) => (
+                                <Food
+                                    key={index} 
+                                    label={currFood.food.label}
+                                    brand={currFood.food.brand}
+                                    onOpenPopup={() => openPopup(currFood)}
+                                />
+                            ))
+                        ) : (
+                            <p>No results found.</p>
+                        )}
+                    </div>
+                </div>
+                <div className='selected-foods'>
+                    <h3>Selected Foods</h3>
+                    {selectedFoodsList.length > 0 ? (
+                        <div>
+                            {selectedFoodsList.map((food, index) => (
+                                <FoodPreview
+                                    key={index}
+                                    modifiedFood={food}
+                                    onDelete={onDeleteFood}
+                                />
+                            ))}
+                            <button onClick={onDoneClick}>Done</button>
+                        </div>
                     ) : (
-                        <p>No results found.</p>
+                        <p>Add some food!</p>
                     )}
                 </div>
             </div>
-            {selectedFood && (<Popup popupFood={selectedFood} onClosePopup={closePopup} />)}
-            <br></br>
-            {pageHistory.length > 0 && (
-                <button onClick={onPreviousPage}>Previous Page</button>
+            {selectedFood && (
+                <Popup
+                    popupFood={selectedFood}
+                    onClosePopup={closePopup}
+                    onAddFood={onAddFood}
+                />
             )}
-            {nextPage && (
-                <button onClick={onNextPage}>Next Page</button>
-            )}
+            <div className='nav-arrows'>
+                {pageHistory.length > 0 && (
+                    <button onClick={onPreviousPage}>←</button>
+                )}
+                {nextPage && (
+                    <button onClick={onNextPage}>→</button>
+                )}
+            </div>
         </div>
     );
 }
@@ -112,7 +178,6 @@ async function fetchJson(query) {
         throw new Error(e);
     }
 }
-
 
 function Form({ onSubmit, onChange, value }) {
     return (

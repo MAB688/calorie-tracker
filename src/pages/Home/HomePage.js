@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <h1>Home Page</h1>
-      <Link to="/search">Search</Link>
+      <Link to="/search?meal=lunch">Search</Link>
     </div>
   );
 }
