@@ -86,7 +86,6 @@ function Search() {
 
     const onDoneClick = async () => {
         try {
-          // Send selectedFoodsList to the backend
           const response = await fetch('http://localhost:5000/api/foods', {
             method: 'POST',
             headers: {
@@ -94,9 +93,8 @@ function Search() {
             },
             body: JSON.stringify(selectedFoodsList),
           });
-    
+      
           if (response.ok) {
-            // Data saved successfully
             console.log('Selected foods saved successfully!');
           } else {
             console.error('Failed to save selected foods.');
@@ -105,6 +103,7 @@ function Search() {
           console.error('Error:', error);
         }
       };
+      
 
     return (
         <div className="search">
