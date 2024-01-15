@@ -1,11 +1,116 @@
-import './Search.css';
-import React, { useState } from "react";
+import './Main.css';
+import React, { useState, useEffect } from "react";
 import Popup from './Popup.js'
 import FoodPreview from './FoodPreview.js'
 
 const API_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=04ca9a3c&app_key=6dfb19ff020f2439e857cee0a0e57732";
 
-function Search() {
+function Main() {
+    const [isSearchOpen, setSearchOpen] = useState(false);
+    const [selectedMealType, setSelectedMealType] = useState('');
+
+    const [breakfast, setBreakfast] = useState([]);
+    const [lunch, setLunch] = useState([]);
+    const [dinner, setDinner] = useState([]);
+    const [snack, setSnack] = useState([]);
+
+    const openSearch = (mealType) => {
+        setSearchOpen(true);
+        setSelectedMealType(mealType);
+    };
+
+    const closeSearch = () => {
+        setSearchOpen(false);
+    };
+
+    const updateMealList = (mealType, selectedFoodsList) => {
+        switch (mealType) {
+            case 'breakfast':
+                setBreakfast(breakfast.concat(selectedFoodsList));
+                break;
+            case 'lunch':
+                setLunch(selectedFoodsList);
+                break;
+            case 'dinner':
+                setDinner(selectedFoodsList);
+                break;
+            case 'snack':
+                setSnack(selectedFoodsList);
+                break;
+            default:
+                break;
+        }
+    };
+
+    return (
+        <div>
+            {isSearchOpen ? (
+                <Search mealType={selectedMealType} onClose={closeSearch} updateMealList={updateMealList} />
+            ) : (
+                <Overview onOpenSearch={openSearch} breakfast={breakfast} />
+            )}
+        </div>
+    );
+}
+
+// Move to own file along with search
+function Overview({ onOpenSearch, breakfast }) {
+    const [breakfastList, setBreakfastList] = useState([]);
+    const [lunchList, setLunchList] = useState(["Beans"]);
+    const [dinner, setDinner] = useState([]);
+    const [snack, setSnack] = useState([]);
+
+    const openSearch = (mealType) => {
+        onOpenSearch(mealType);
+    };
+
+    const onDeleteFood = (foodToDelete) => {
+        setBreakfastList((prevList) =>
+            prevList.filter((food) => food !== foodToDelete)
+        );
+    };
+
+    useEffect(() => {
+        setBreakfastList(breakfast);
+    }, [breakfast]);
+
+    return (
+        <div className="overview">
+            <h2>Meal Overview</h2>
+            <div>
+                <h3>Breakfast</h3>
+                <p>Calories:</p>
+                <button onClick={() => openSearch('breakfast')}>Add Food</button>
+                <div>
+                    {breakfastList.map((food) => (
+                        <FoodPreview
+                            modifiedFood={food}
+                            onDelete={onDeleteFood}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div>
+                <h3>Lunch</h3>
+                <p>Calories:</p>
+                <button onClick={() => openSearch('lunch')}>Add Food</button>
+            </div>
+            <div>
+                <h3>Dinner</h3>
+                <p>Calories:</p>
+                <button onClick={() => openSearch('dinner')}>Add Food</button>
+            </div>
+            <div>
+                <h3>Snack</h3>
+                <p>Calories:</p>
+                <button onClick={() => openSearch('snack')}>Add Food</button>
+            </div>
+
+        </div>
+    );
+}
+
+function Search({ onClose, mealType, updateMealList }) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null);
@@ -17,7 +122,7 @@ function Search() {
     const closePopup = () => { setSelectedFood(null); };
 
 
-    // Use for partial and enter search
+    // Use for partial search
     async function onSearchChange(event) {
         const newQuery = event.target.value;
         setQuery(newQuery);
@@ -25,7 +130,6 @@ function Search() {
         if (newQuery.trim() !== "") {
             const fetchedJson = await fetchJson(newQuery);
             setResults(fetchedJson.hints);
-            //setPageHistory((prevHistory) => [...prevHistory, fetchedJson.hints]);
             setPageHistory([]);
             if (fetchedJson._links) {
                 setNextPage(fetchedJson._links.next.href);
@@ -83,8 +187,10 @@ function Search() {
     };
 
     const onDoneClick = () => {
-      };
-      
+        updateMealList(mealType, selectedFoodsList);
+        onClose();
+    };
+
 
     return (
         <div className="search">
@@ -99,9 +205,8 @@ function Search() {
                 <div className="results">
                     <div>
                         {results && results.length > 0 ? (
-                            results.map((currFood, index) => (
+                            results.map((currFood) => (
                                 <Food
-                                    key={index} 
                                     label={currFood.food.label}
                                     brand={currFood.food.brand}
                                     onOpenPopup={() => openPopup(currFood)}
@@ -184,4 +289,4 @@ function Food({ label, brand, onOpenPopup }) {
     );
 }
 
-export default Search;
+export default Main;
