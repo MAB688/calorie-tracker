@@ -42,7 +42,6 @@ function Search() {
         event.preventDefault();
         const fetchedJson = await fetchJson(query);
         setResults(fetchedJson.hints);
-        //setPageHistory((prevHistory) => [...prevHistory, fetchedJson.hints]);
         setNextPage(fetchedJson._links.next.href)
     }
 
@@ -53,7 +52,6 @@ function Search() {
                 const response = await fetch(nextPage);
                 const json = await response.json();
                 setResults(json.hints || []);
-                //setPageHistory((prevHistory) => [...prevHistory, json.hints]);
                 setNextPage(json._links.next.href || "");
                 // Scroll to the top
                 window.scrollTo({ top: 0, left: 0 });
@@ -84,24 +82,7 @@ function Search() {
         );
     };
 
-    const onDoneClick = async () => {
-        try {
-          const response = await fetch('http://localhost:5000/api/foods', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(selectedFoodsList),
-          });
-      
-          if (response.ok) {
-            console.log('Selected foods saved successfully!');
-          } else {
-            console.error('Failed to save selected foods.');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
+    const onDoneClick = () => {
       };
       
 
