@@ -29,7 +29,7 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
         // Check if inputGrams is a valid number
         if (!isNaN(inputGrams)) {
             setServingSize(inputGrams / sizeInGrams);
-    }
+        }
     }
 
     // Clicking outside the popup closes it
@@ -52,8 +52,8 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
             fat: (adjustedFat * servingSize).toFixed(0),
             carb: (adjustedCarbs * servingSize).toFixed(0),
             fiber: (adjustedFiber * servingSize).toFixed(0),
-      };
-      onAddFood(modifiedFood);
+        };
+        onAddFood(modifiedFood);
     }
 
     return (
@@ -80,7 +80,7 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
                         className='textbox'
                         onChange={onGramChange}
                         type='text'
-                        value={(sizeInGrams*servingSize).toFixed(0)}
+                        value={(sizeInGrams * servingSize).toFixed(0)}
                     />
                 </div>
                 <div className="output-section">
