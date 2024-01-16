@@ -85,6 +85,9 @@ function Search({ onClose, mealType, updateMealList }) {
         onClose();
     };
 
+    const onCancelClick = () => {
+        onClose();  // Call the onClose function passed from Main.js to go back to the overview page
+    };
 
     return (
         <div className="search">
@@ -122,10 +125,13 @@ function Search({ onClose, mealType, updateMealList }) {
                                     onDelete={onDeleteFood}
                                 />
                             ))}
-                            <button onClick={onDoneClick}>Done</button>
+                            <div className='select-buttons'>
+                                <button onClick={onCancelClick}>Cancel</button>
+                                <button onClick={onDoneClick}>Done</button>
+                            </div>
                         </div>
                     ) : (
-                        <p>Add some food!</p>
+                        <><p>Add some food!</p><button onClick={onCancelClick}>Cancel</button></>
                     )}
                 </div>
             </div>

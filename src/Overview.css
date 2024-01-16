@@ -12,7 +12,7 @@
 .food-overview {
     width: calc(50% - 30px);
     /* Adjust the width to get 2 items in a row with margin */
-    border: 1px solid #ddd;
+    border: 1px solid #c1bdbd;
     /* Add a border */
     padding: 10px;
     /* Add padding */
@@ -24,6 +24,7 @@
     box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
     /* Add a subtle box shadow */
     background-color: white;
+    
 }
 
 .food-overview h4 {
@@ -59,6 +60,16 @@
     margin-bottom: 10px;
 }
 
+.quadrant h3, .quadrant p {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
 .header {
     margin-bottom: 20px;
+}
+
+.header h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
 }

@@ -109,3 +109,9 @@
     margin: 0;
     /* Remove default margin for paragraphs */
 }
+
+.select-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

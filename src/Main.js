@@ -7,10 +7,12 @@ function Main() {
     const [isSearchOpen, setSearchOpen] = useState(false);
     const [selectedMealType, setSelectedMealType] = useState('');
 
-    const [breakfast, setBreakfast] = useState([]);
-    const [lunch, setLunch] = useState([]);
-    const [dinner, setDinner] = useState([]);
-    const [snack, setSnack] = useState([]);
+    const [mealLists, setMealLists] = useState({
+        breakfast: [],
+        lunch: [],
+        dinner: [],
+        snack: [],
+    });
 
     const openSearch = (mealType) => {
         setSearchOpen(true);
@@ -22,22 +24,17 @@ function Main() {
     };
 
     const updateMealList = (mealType, selectedFoodsList) => {
-        switch (mealType) {
-            case 'breakfast':
-                setBreakfast(breakfast.concat(selectedFoodsList));
-                break;
-            case 'lunch':
-                setLunch(lunch.concat(selectedFoodsList));
-                break;
-            case 'dinner':
-                setDinner(dinner.concat(selectedFoodsList));
-                break;
-            case 'snack':
-                setSnack(snack.concat(selectedFoodsList));
-                break;
-            default:
-                break;
-        }
+        setMealLists((prevLists) => ({
+            ...prevLists,
+            [mealType]: prevLists[mealType].concat(selectedFoodsList),
+        }));
+    };
+
+    const deleteFoodItem = (mealType, foodToDelete) => {
+        setMealLists((prevLists) => ({
+            ...prevLists,
+            [mealType]: prevLists[mealType].filter((food) => food !== foodToDelete),
+        }));
     };
 
     return (
@@ -45,7 +42,7 @@ function Main() {
             {isSearchOpen ? (
                 <Search mealType={selectedMealType} onClose={closeSearch} updateMealList={updateMealList} />
             ) : (
-                <Overview onOpenSearch={openSearch} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack} />
+                <Overview onOpenSearch={openSearch} deleteFoodItem={deleteFoodItem} mealLists={mealLists} />
             )}
         </div>
     );
