@@ -1,14 +1,17 @@
 .overview {
-    margin-left: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .items {
-    max-width: 10%;
-    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* Adjust as needed for spacing */
 }
 
 .food-overview {
+    width: calc(50% - 30px);
+    /* Adjust the width to get 2 items in a row with margin */
     border: 1px solid #ddd;
     /* Add a border */
     padding: 10px;
@@ -18,8 +21,9 @@
     /* Add margin between items */
     border-radius: 8px;
     /* Add rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
     /* Add a subtle box shadow */
+    background-color: white;
 }
 
 .food-overview h4 {
@@ -31,4 +35,30 @@
 .food-overview p {
     margin: 0;
     /* Remove default margin for paragraphs */
+}
+
+.quadrant {
+    width: 45%;
+    /* Adjust the width of each quadrant as needed */
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    border: 2px solid #a7a7a7;
+    /* Add a border to the quadrant */
+    border-radius: 8px;
+    /* Add rounded corners to the quadrant */
+    padding: 10px;
+    /* Add padding to the quadrant */
+    background-color: rgb(214, 239, 226);
+    ;
+}
+
+.quadrant button {
+    margin-bottom: 10px;
+}
+
+.header {
+    margin-bottom: 20px;
 }
