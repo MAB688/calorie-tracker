@@ -112,8 +112,9 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
         <div className="overview">
             <div className="header">
                 <h2>{`Meal Overview - ${getCurrentDate()}`}</h2>
-                
+                <hr />
                 <h3><strong>Total Calories: </strong>{totalNutrients.calories} kcal</h3>
+                
                 <p>
                     <span><strong>Total Protein: </strong>{totalNutrients.protein}g</span>
                     <span> | <strong>Total Fat: </strong>{totalNutrients.fat}g</span>

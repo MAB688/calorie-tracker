@@ -60,6 +60,10 @@
     margin-bottom: 10px;
 }
 
+.quadrant button:hover {
+    background-color: white
+}
+
 .quadrant h3, .quadrant p {
     
     margin-top: 0;
@@ -71,10 +75,36 @@
 }
 
 .header h2 {
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333
+}
+
+.header hr {
+    border: 1px solid #bababa; /* Adjust color as needed */
+    margin: 10px 0;
 }
 
 .header h3 {
     font-weight: normal;
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555; /* Adjust color as needed */
 }
+
+.header strong {
+    font-weight: bold;
+    color: #333; /* Adjust color as needed */
+}
+
+.header p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #777; /* Adjust color as needed */
+}
+
+.header span {
+    margin-right: 5px;
+}
+
