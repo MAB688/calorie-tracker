@@ -61,6 +61,7 @@
 }
 
 .quadrant h3, .quadrant p {
+    
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -72,4 +73,8 @@
 .header h2 {
     margin-top: 10px;
     margin-bottom: 0;
+}
+
+.header h3 {
+    font-weight: normal;
 }

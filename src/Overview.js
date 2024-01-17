@@ -15,21 +15,21 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
         calories: 0,
         protein: 0,
         fat: 0,
-        carbs: 0,
+        carb: 0,
         fiber: 0,
     });
     const [dinnerTotal, setDinnerTotal] = useState({
         calories: 0,
         protein: 0,
         fat: 0,
-        carbs: 0,
+        carb: 0,
         fiber: 0,
     });
     const [snackTotal, setSnackTotal] = useState({
         calories: 0,
         protein: 0,
         fat: 0,
-        carbs: 0,
+        carb: 0,
         fiber: 0,
     });
 
@@ -37,7 +37,7 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
         calories: 0,
         protein: 0,
         fat: 0,
-        carbs: 0,
+        carb: 0,
         fiber: 0,
     });
 
@@ -99,27 +99,38 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
     }, [breakfast, lunch, dinner, snack]);
 
 
-        // Function to format the current date as "MM/DD/YYYY"
-        const getCurrentDate = () => {
-            const now = new Date();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0');
-            const day = now.getDate().toString().padStart(2, '0');
-            const year = now.getFullYear();
-            return `${month}/${day}/${year}`;
-        };
+    // Function to format the current date as "MM/DD/YYYY"
+    const getCurrentDate = () => {
+        const now = new Date();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const year = now.getFullYear();
+        return `${month}/${day}/${year}`;
+    };
 
     return (
         <div className="overview">
             <div className="header">
                 <h2>{`Meal Overview - ${getCurrentDate()}`}</h2>
-                <p>Total Calories: {totalNutrients.calories}</p>
-                <p>Total Protein: {totalNutrients.protein}</p>
-                <p>Total Fat: {totalNutrients.fat}</p>
+                
+                <h3><strong>Total Calories: </strong>{totalNutrients.calories} kcal</h3>
+                <p>
+                    <span><strong>Total Protein: </strong>{totalNutrients.protein}g</span>
+                    <span> | <strong>Total Fat: </strong>{totalNutrients.fat}g</span>
+                    <span> | <strong>Total Carbs: </strong>{totalNutrients.carb}g</span>
+                    <span> | <strong>Total Fiber: </strong>{totalNutrients.fiber}g</span>
+                </p>
                 <hr />
             </div>
             <div className="quadrant">
                 <h3>Breakfast</h3>
-                <p>Calories: {breakfastTotal.calories}</p>
+                <hr />
+                <p><strong>Calories: </strong>{breakfastTotal.calories} kcal
+                    <span> | <strong>Protein: </strong>{breakfastTotal.protein}g</span>
+                    <span> | <strong>Fat: </strong>{breakfastTotal.fat}g</span>
+                    <span> | <strong>Carbs: </strong>{breakfastTotal.carb}g</span>
+                    <span> | <strong>Fiber: </strong>{breakfastTotal.fiber}g</span></p>
+                <hr />
                 <button onClick={() => openSearch('breakfast')}>Add Food</button>
                 <div className='items'>
                     {breakfast.map((food) => (
@@ -134,7 +145,13 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Lunch</h3>
-                <p>Calories: {lunchTotal.calories}</p>
+                <hr />
+                <p><strong>Calories: </strong>{lunchTotal.calories} kcal
+                    <span> | <strong>Protein: </strong>{lunchTotal.protein}g</span>
+                    <span> | <strong>Fat: </strong>{lunchTotal.fat}g</span>
+                    <span> | <strong>Carbs: </strong>{lunchTotal.carb}g</span>
+                    <span> | <strong>Fiber: </strong>{lunchTotal.fiber}g</span></p>
+                <hr />
                 <button onClick={() => openSearch('lunch')}>Add Food</button>
                 <div className='items'>
                     {lunch.map((food) => (
@@ -149,7 +166,13 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Dinner</h3>
-                <p>Calories: {dinnerTotal.calories}</p>
+                <hr />
+                <p><strong>Calories: </strong>{dinnerTotal.calories} kcal
+                    <span> | <strong>Protein: </strong>{dinnerTotal.protein}g</span>
+                    <span> | <strong>Fat: </strong>{dinnerTotal.fat}g</span>
+                    <span> | <strong>Carbs: </strong>{dinnerTotal.carb}g</span>
+                    <span> | <strong>Fiber: </strong>{dinnerTotal.fiber}g</span></p>
+                <hr />
                 <button onClick={() => openSearch('dinner')}>Add Food</button>
                 <div className='items'>
                     {dinner.map((food) => (
@@ -164,7 +187,13 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Snack</h3>
-                <p>Calories: {snackTotal.calories}</p>
+                <hr />
+                <p><strong>Calories: </strong>{snackTotal.calories} kcal
+                    <span> | <strong>Protein: </strong>{snackTotal.protein}g</span>
+                    <span> | <strong>Fat: </strong>{snackTotal.fat}g</span>
+                    <span> | <strong>Carbs: </strong>{snackTotal.carb}g</span>
+                    <span> | <strong>Fiber: </strong>{snackTotal.fiber}g</span></p>
+                <hr />
                 <button onClick={() => openSearch('snack')}>Add Food</button>
                 <div className='items'>
                     {snack.map((food) => (
