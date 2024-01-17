@@ -29,7 +29,7 @@ This project is a web application for tracking nutrient intake throughout the da
 To run the project locally, follow these steps:
 
 1. Clone the repository: `git clone [repository_url]`
-2. Navigate to the project directory: `cd nutrient-tracking-project`
+2. Navigate to the project directory: `cd meal-tracker`
 3. Install dependencies: `npm install`
 4. Start the application: `npm start`
 
@@ -41,10 +41,6 @@ The application should now be accessible at [http://localhost:3000](http://local
 - **Search Component:** Handles food search, selection, and addition to meals.
 - **Overview Component:** Displays meal overviews and manages nutrient tracking logic.
 - **Popup Component:** Represents a popup for selected foods, allowing serving size adjustment.
-
-## Contributing
-
-Contributions are welcome! If you encounter issues or have suggestions for improvements, please open an [issue](link_to_issues) or submit a [pull request](link_to_pull_requests).
 
 ## License
 
