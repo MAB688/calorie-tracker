@@ -6,32 +6,24 @@
     margin: 0 auto;
     text-align: center;
     display: flex;
-    /* Use flexbox */
     flex-direction: column;
-    /* Stack children vertically */
 }
 
 .results-container {
     display: flex;
-    /* Use flexbox */
     justify-content: space-between;
     width: 100%;
 }
 
 .results {
     width: 60%;
-    /* Adjust the width as needed */
     text-align: left;
-    /* Align text to the left */
 }
 
 .selected-foods {
     width: 35%;
-    /* Adjust the width as needed */
     text-align: center;
-    /* Align text to the left */
     margin-left: 5%;
-    /* Add a margin between results and selected foods */
 }
 
 .search-form {
@@ -54,14 +46,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    /* Adjust the padding as needed */
     margin-top: 10px;
-    /* Adjust the margin as needed */
     background-color: rgb(179, 218, 197);
     border-radius: 8px;
-    /* Add rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Add a subtle box shadow */
 }
 
 .food-label {
@@ -77,7 +65,6 @@
 
 .nav-arrows {
     margin-top: 10px;
-
 }
 
 .nav-arrows button {
@@ -87,27 +74,20 @@
 
 .food-preview {
     border: 1px solid #ddd;
-    /* Add a border */
     padding: 10px;
-    /* Add padding */
     padding-top: 0px;
     margin-bottom: 10px;
-    /* Add margin between items */
     border-radius: 8px;
-    /* Add rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Add a subtle box shadow */
 }
 
 .food-preview h4 {
     margin-top: 5px;
     margin-bottom: 5px;
-    /* Add margin below h4 */
 }
 
 .food-preview p {
     margin: 0;
-    /* Remove default margin for paragraphs */
 }
 
 .select-buttons {

@@ -2,21 +2,33 @@ import './Search.css';
 import React, { useState } from "react";
 import Popup from './Popup'
 
+// API endpoint for food search
 const API_URL = "https://api.edamam.com/api/food-database/v2/parser?app_id=04ca9a3c&app_key=6dfb19ff020f2439e857cee0a0e57732";
 
+// Search component for finding and adding foods to a meal list
+// onClose - Callback function to close the search
+// mealType - Type of meal (e.g., breakfast, lunch) being updated
+// updateMealList - Callback function to update the meal list
 function Search({ onClose, mealType, updateMealList }) {
+    // Represents the current search query entered by the user
     const [query, setQuery] = useState("");
+    // Represents the list of search results obtained from the food search API
     const [results, setResults] = useState([]);
+    // Represents the currently selected food item for detailed view in the food popup
     const [selectedFood, setSelectedFood] = useState(null);
+    // Represents the history of search results pages for supporting pagination
     const [pageHistory, setPageHistory] = useState([]);
+    // Represents the URL of the next page of search results for pagination
     const [nextPage, setNextPage] = useState("")
+    // Represents the list of selected foods chosen by the user during the search
     const [selectedFoodsList, setSelectedFoodsList] = useState([]);
 
+    // Opens the food details popup
     const openPopup = (food) => { setSelectedFood(food); };
+    // Close the food details popup
     const closePopup = () => { setSelectedFood(null); };
 
-
-    // Use for partial search
+    // Handles partial search input change 
     async function onSearchChange(event) {
         const newQuery = event.target.value;
         setQuery(newQuery);
@@ -36,6 +48,7 @@ function Search({ onClose, mealType, updateMealList }) {
         }
     }
 
+    //  Handles form submission for full search
     async function onSearchSubmit(event) {
         event.preventDefault();
         const fetchedJson = await fetchJson(query);
@@ -43,6 +56,7 @@ function Search({ onClose, mealType, updateMealList }) {
         setNextPage(fetchedJson._links.next.href)
     }
 
+    // Handles loading the next page of search results
     async function onNextPage() {
         if (nextPage) {
             try {
@@ -59,6 +73,7 @@ function Search({ onClose, mealType, updateMealList }) {
         }
     }
 
+    // Handles loading the previous page of search results
     function onPreviousPage() {
         if (pageHistory.length > 0) {
             const previousResults = pageHistory.pop();
@@ -67,6 +82,7 @@ function Search({ onClose, mealType, updateMealList }) {
         }
     }
 
+    // Add selected food to the list of selected foods
     const onAddFood = (modifiedFood) => {
         if (modifiedFood) {
             setSelectedFoodsList((prevList) => [...prevList, modifiedFood]);
@@ -74,17 +90,20 @@ function Search({ onClose, mealType, updateMealList }) {
         }
     }
 
+    // Removes food from the list of selected foods
     const onDeleteFood = (foodToDelete) => {
         setSelectedFoodsList((prevList) =>
             prevList.filter((food) => food !== foodToDelete)
         );
     };
 
+    // Handles the "Done" button click, updating the external meal list
     const onDoneClick = () => {
         updateMealList(mealType, selectedFoodsList);
         onClose();
     };
 
+    // Handles the "Cancel" button click to close the search
     const onCancelClick = () => {
         onClose();  // Call the onClose function passed from Main.js to go back to the overview page
     };
@@ -154,6 +173,7 @@ function Search({ onClose, mealType, updateMealList }) {
     );
 }
 
+// Fetches JSON data from the food search API
 async function fetchJson(query) {
     try {
         const response = await fetch(`${API_URL}&ingr=${query}`);
@@ -164,6 +184,7 @@ async function fetchJson(query) {
     }
 }
 
+// Form component for the search input
 function Form({ onSubmit, onChange, value }) {
     return (
         <form className="search-form" onSubmit={onSubmit}>
@@ -178,6 +199,7 @@ function Form({ onSubmit, onChange, value }) {
     );
 }
 
+// Food component to be displayed as search results
 function Food({ label, brand, onOpenPopup }) {
     const displayBrand = brand && brand.trim() !== "" ? brand : "Generic";
 
@@ -189,6 +211,7 @@ function Food({ label, brand, onOpenPopup }) {
     );
 }
 
+// Food preview to be displayed in the food preview list during search
 function FoodPreview({ modifiedFood, onDelete }) {
     return (
         <div className="food-preview">

@@ -6,54 +6,39 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* Adjust as needed for spacing */
 }
 
 .food-overview {
     width: calc(50% - 30px);
-    /* Adjust the width to get 2 items in a row with margin */
     border: 1px solid #c1bdbd;
-    /* Add a border */
     padding: 10px;
-    /* Add padding */
     padding-top: 0px;
     margin-bottom: 10px;
-    /* Add margin between items */
     border-radius: 8px;
-    /* Add rounded corners */
     box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
-    /* Add a subtle box shadow */
     background-color: white;
-    
 }
 
 .food-overview h4 {
     margin-top: 5px;
     margin-bottom: 5px;
-    /* Add margin below h4 */
 }
 
 .food-overview p {
     margin: 0;
-    /* Remove default margin for paragraphs */
 }
 
 .quadrant {
     width: 45%;
-    /* Adjust the width of each quadrant as needed */
     display: inline-block;
     vertical-align: top;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 40px;
     border: 2px solid #a7a7a7;
-    /* Add a border to the quadrant */
     border-radius: 8px;
-    /* Add rounded corners to the quadrant */
     padding: 10px;
-    /* Add padding to the quadrant */
     background-color: rgb(214, 239, 226);
-    ;
 }
 
 .quadrant button {
@@ -61,11 +46,11 @@
 }
 
 .quadrant button:hover {
-    background-color: white
+    background-color: white;
 }
 
-.quadrant h3, .quadrant p {
-    
+.quadrant h3,
+.quadrant p {
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -78,11 +63,11 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 28px;
-    color: #333
+    color: #333;
 }
 
 .header hr {
-    border: 1px solid #bababa; /* Adjust color as needed */
+    border: 1px solid #bababa;
     margin: 10px 0;
 }
 
@@ -90,21 +75,20 @@
     font-weight: normal;
     font-size: 18px;
     margin: 10px 0;
-    color: #555; /* Adjust color as needed */
+    color: #555;
 }
 
 .header strong {
     font-weight: bold;
-    color: #333; /* Adjust color as needed */
+    color: #333;
 }
 
 .header p {
     margin-bottom: 10px;
     font-size: 16px;
-    color: #777; /* Adjust color as needed */
+    color: #777;
 }
 
 .header span {
     margin-right: 5px;
 }
-

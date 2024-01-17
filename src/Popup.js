@@ -1,6 +1,11 @@
 import './Popup.css';
 import React, { useState, useEffect, useRef } from "react";
 
+// Popup component for displaying detailed information about a selected food item
+// Allows the user to adjust serving size, view nutrition facts, and add the food to the meal list
+// popupFood - The selected food item to display in the popup
+// onClosePopup - Function to close the popup
+// onAddFood - Function to add the selected food to the meal list
 function Popup({ popupFood, onClosePopup, onAddFood }) {
     const popupRef = useRef(null);
     const [servingSize, setServingSize] = useState(1);
@@ -19,11 +24,13 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
     const adjustedCarbs = (carbs / 100) * sizeInGrams
     const adjustedFiber = (fiber / 100) * sizeInGrams
 
+    // Handles the change in serving size from the slider
     function onServingSizeChange(event) {
         const inputServingSize = parseFloat(event.target.value);
         setServingSize(inputServingSize);
     }
 
+    // Handles the change in grams from the text input
     function onGramChange(event) {
         const inputGrams = parseFloat(event.target.value);
         // Check if inputGrams is a valid number
@@ -32,7 +39,7 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
         }
     }
 
-    // Clicking outside the popup closes it
+    // Closes the popup when clicking outside the content
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -43,6 +50,8 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
         return () => { document.removeEventListener("click", handleOutsideClick, true); };
     }, [onClosePopup]);
 
+    // Handles the click event for the "Add" button
+    // Adds the selected food to the meal list with the adjusted serving size
     const onAddButtonClick = () => {
         const modifiedFood = {
             label: (popupFood.food.label),
