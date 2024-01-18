@@ -7,17 +7,21 @@ import React, { useState, useEffect, useRef } from "react";
 // onClosePopup - Function to close the popup
 // onAddFood - Function to add the selected food to the meal list
 function Popup({ popupFood, onClosePopup, onAddFood }) {
+    // Reference to the DOM element of the popup
     const popupRef = useRef(null);
+    // State hook to manage the serving size
     const [servingSize, setServingSize] = useState(1);
-
+    // Extracting nutritional information from the selected food item
     const calories = popupFood.food.nutrients.ENERC_KCAL;
     const protein = popupFood.food.nutrients.PROCNT;
     const fat = popupFood.food.nutrients.FAT;
     const carbs = popupFood.food.nutrients.CHOCDF;
     const fiber = popupFood.food.nutrients.FIBTG;
 
+    // Size of the food item in grams
     const sizeInGrams = popupFood.measures[0].weight;
 
+    // Calculating adjusted nutritional values based on serving size
     const adjustedCalories = (calories / 100) * sizeInGrams;
     const adjustedProtein = (protein / 100) * sizeInGrams
     const adjustedFat = (fat / 100) * sizeInGrams
@@ -94,6 +98,7 @@ function Popup({ popupFood, onClosePopup, onAddFood }) {
                 </div>
                 <div className="output-section">
                     <h3>Nutrition Facts</h3>
+                    <hr />
                     <div className="nutrient">
                         <strong>Calories:</strong> {(adjustedCalories * servingSize).toFixed(0)} kcal
                     </div>

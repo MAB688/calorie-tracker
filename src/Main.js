@@ -1,4 +1,3 @@
-import './Main.css';
 import React, { useState } from "react";
 import Search from './Search.js'
 import Overview from './Overview.js';

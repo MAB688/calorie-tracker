@@ -1,51 +1,62 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  text-align: center;
+  max-height: 80%;
+  overflow-y: auto;
+}
 
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 80%;
-    text-align: center;
-    max-height: 80%; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
-  }
+.popup-content button {
+  background: rgb(179, 218, 197);
+  color: rgb(38, 38, 38);
+  border: 2px solid rgb(119, 144, 130);
+  border-radius: 5px;
+  font-size: 20px;
+}
 
-  .popup-content button {
-    background: rgb(211, 216, 253);
-    color: rgb(10, 27, 184);
-    border: 2px solid rgb(10, 27, 184);
-    border-radius: 5px;
-    font-size: 20px;
-  }
+.popup-content button:hover {
+  background-color: rgb(150, 182, 164)
+}
 
-  .output-section {
-    margin-top: 20px;
-  }
-  
-  .nutrient {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .nutrient strong {
-    font-weight: bold;
-  }
-  
-  .nutrient-value {
-    font-weight: normal;
-  }
+.output-section {
+  margin-top: 20px;
+}
+
+.output-section h3 {
+  margin-bottom: 0;
+}
+
+.nutrient {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.nutrient strong {
+  font-weight: bold;
+}
+
+.nutrient-value {
+  font-weight: normal;
+}
+
+.input-slider {
+  color: rgb(179, 218, 197);
+  background-color: rgb(179, 218, 197);
+}

@@ -95,3 +95,7 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
+.food:hover {
+    background-color: rgb(162, 197, 178);
+}
