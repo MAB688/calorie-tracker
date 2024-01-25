@@ -20,8 +20,6 @@ This project is a web application for tracking nutrient intake throughout the da
 
 - **Edamam API:** An external API is utilized to fetch detailed nutritional information for a wide variety of foods.
 
-- **React Router:** Enables smooth navigation within the application, ensuring a seamless user experience.
-
 - **CSS:** Cascading Style Sheets are employed for styling, ensuring an aesthetically pleasing and responsive design.
 
 ## Getting Started
