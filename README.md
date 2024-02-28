@@ -24,6 +24,8 @@ This project is a web application for tracking nutrient intake throughout the da
 
 ## Getting Started
 
+Dependencies: Git, Node.js
+
 To run the project locally, follow these steps:
 
 1. Clone the repository: `git clone [repository_url]`
