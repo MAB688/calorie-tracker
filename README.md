@@ -14,6 +14,8 @@ This project is a web application for tracking nutrient intake throughout the da
 
 - **Serving Size Adjustment:** Users can adjust serving sizes and see real-time updates to the nutritional values.
 
+- **Responsive UI:** Each component will dynamically resize depending on page size and the number of food items it contains.
+
 ## Technologies Used
 
 - **React:** The project is built using the React library, providing a modular and efficient way to manage components and state.
@@ -28,7 +30,7 @@ Dependencies: Git, Node.js
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: `git clone [repository_url]`
+1. Clone the repository: `git clone https://github.com/MAB688/meal-tracker.git`
 2. Navigate to the project directory: `cd meal-tracker`
 3. Install dependencies: `npm install`
 4. Start the application: `npm start`
