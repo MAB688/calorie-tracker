@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
     Add an edit button for added foods
     Add/delete mustom meal types (lunch, dinner, snack, etc)
     Favorite foods/meals in search
+    Fix forward, backward, forward bug
 */
 
 // Overview component that displays meal details and allows meal editing
@@ -12,7 +13,7 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
     // Destructuring mealLists into individual meal arrays
     const { breakfast, lunch, dinner, snack } = mealLists;
 
-    // State variables to track nutrients for each meal type
+    // State variable arrays to track nutrients for each meal type
     const [breakfastTotal, setBreakfastTotal] = useState({
         calories: 0,
         protein: 0,
@@ -42,7 +43,7 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
         fiber: 0,
     });
 
-    // State variable to track overall total nutrients
+    // State variable array to track overall total nutrients
     const [totalNutrients, setTotalNutrients] = useState({
         calories: 0,
         protein: 0,
