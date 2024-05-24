@@ -103,17 +103,19 @@ body {
 }
 
 .quadrant .add-food {
-    position: absolute; /* Add this line */
-    top: 20px; /* Position the button at the top */
-    right: 20px; /* Position the button at the right */
-    background-color: #4b8a4e; /* Orange */
+    position: absolute; /* Ensures positioning within the quadrant */
+    top: 17px; /* Positions the button at the top */
+    right: 26px; /* Positions the button at the right */
+    background-color: #4b8a4e; /* Green background */
     border: none;
     color: #f2f2f2;
-    padding: 4px 8px;
-    font-size: 22px;
-    border-radius: 12px;
+    width: 50px; /* Define a fixed width */
+    height: 50px; /* Define a fixed height */
+    font-size: 36px; /* Font size for the plus sign */
+    border-radius: 50%; /* Makes the button circular */
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-bottom: 6px; /* Remove default padding */
 }
 
 .quadrant button:hover {
