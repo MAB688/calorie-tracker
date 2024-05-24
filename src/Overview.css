@@ -1,90 +1,204 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    color: #363636;
+    margin: 0;
+    padding: 0;
+}
+
 .overview {
     text-align: center;
+    padding: 20px;
+}
+
+.header {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #4b8a4e; /* Dark green */
+    border-radius: 12px;
+    position: relative; /* Enable positioning for child elements */
+    text-align: center; /* Align text to the left */
+}
+
+.header h2 {
+    font-size: 48px;
+    color: #f2f2f2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+.past {
+    font-size: 26px;
+    font-weight: bold;
+    color: #f2f2f2;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #2c512d;
+    padding: 10px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.past:hover {
+    transform: scale(1.1);
+}
+
+.header .date {
+    font-size: 26px;
+    font-weight: bold;
+    color: #363636;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.total-nutrients {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -20px;
+    background-color: #4b5f8a; /* Dark green */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 0px;
+}
+
+.total-nutrients h3 {
+    display: block; /* Ensure the element behaves as a block element */
+    width: 15%; /* Full width, accounting for padding */
+    padding: 10px;
+    border-radius: 12px;
+    margin: -10px auto 10px; /* Center it and add bottom margin */
+    color: #f2f2f2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    background-color: #2c406b;
+    font-size: 34px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.total-nutrients .nutrient-breakdown span {
+    font-size: 22px;
+}
+
+.quadrant {
+    position: relative;
+    background-color: #f0c687;
+    border-radius: 12px;
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px;
+    padding: 20px;
+}
+
+.quadrant .add-food {
+    position: absolute; /* Add this line */
+    top: 20px; /* Position the button at the top */
+    right: 20px; /* Position the button at the right */
+    background-color: #4b8a4e; /* Orange */
+    border: none;
+    color: #f2f2f2;
+    padding: 4px 8px;
+    font-size: 22px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quadrant button:hover {
+    background-color: #2f7233; /* Darker orange */
+    transform: scale(1.1);
+}
+
+.quadrant h3 {
+    display: block; /* Ensure the element behaves as a block element */
+    width: 30%; /* Full width, accounting for padding */
+    margin: -10px auto 10px; /* Center it and add bottom margin */
+    padding: 10px;
+    font-size: 36px;
+    color: #f2f2f2;
+    background-color: #c18937;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.quadrant p {
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
 .food-overview {
-    width: calc(50% - 30px);
-    border: 1px solid #c1bdbd;
-    padding: 10px;
-    padding-top: 0px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    width: calc(25%);
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .food-overview h4 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.food-overview p {
-    margin: 0;
-}
-
-.quadrant {
-    width: 45%;
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 40px;
-    border: 2px solid #a7a7a7;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: rgb(214, 239, 226);
-}
-
-.quadrant button {
+    font-size: 22px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.quadrant h3,
-.quadrant p {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.header {
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #333;
-}
-
-.header hr {
-    border: 1px solid #bababa;
-    margin: 10px 0;
-}
-
-.header h3 {
-    font-weight: normal;
-    font-size: 18px;
-    margin: 10px 0;
-    color: #555;
-}
-
-.header strong {
-    font-weight: bold;
-    color: #333;
-}
-
-.header p {
-    margin-bottom: 10px;
+.food-overview button {
+    background-color: #c53937; /* Red */
+    border: none;
+    color: #f2f2f2;
+    padding: 10px 20px;
     font-size: 16px;
-    color: #777;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.header span {
-    margin-right: 5px;
+.food-overview button:hover {
+    background-color: #9d1414; /* Darker red */
+    transform: scale(1.1);
+}
+
+.nutrient-breakdown {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.nutrient-section {
+    background-color: #e9e9e9;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 5px;
+    flex: 1 1 calc(20% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.nutrient-section span {
+    font-size: 18px;
 }

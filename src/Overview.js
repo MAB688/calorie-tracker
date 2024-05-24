@@ -1,6 +1,12 @@
 import './Overview.css';
 import React, { useState, useEffect } from "react";
 
+/*
+    Add an edit button for added foods
+    Add/delete mustom meal types (lunch, dinner, snack, etc)
+    Favorite foods/meals in search
+*/
+
 // Overview component that displays meal details and allows meal editing
 function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
     // Destructuring mealLists into individual meal arrays
@@ -126,30 +132,51 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
         <div className="overview">
             {/* Header section displaying current date and overall totals */}
             <div className="header">
-                <h2>{`Meal Overview - ${getCurrentDate()}`}</h2>
-                <hr />
-                <h3><strong>Total Calories: </strong>{totalNutrients.calories} kcal</h3>
-                <p>
-                    <span><strong>Total Protein: </strong>{totalNutrients.protein}g</span>
-                    <span> | <strong>Total Fat: </strong>{totalNutrients.fat}g</span>
-                    <span> | <strong>Total Carbs: </strong>{totalNutrients.carb}g</span>
-                    <span> | <strong>Total Fiber: </strong>{totalNutrients.fiber}g</span>
-                </p>
-                <hr />
+                <div className="past">Past Meals</div>
+                <h2>Daily Meal Overview</h2>
+                <div className="date">{getCurrentDate()}</div>
+            </div>
+            <div className="total-nutrients">
+                <h3>Total Nutrients</h3>
+                <div className="nutrient-breakdown">
+                    <div className="nutrient-section">
+                        <span><strong>Calories: </strong>{totalNutrients.calories} kcal</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Protein: </strong>{totalNutrients.protein}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fat: </strong>{totalNutrients.fat}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Carbs: </strong>{totalNutrients.carb}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fiber: </strong>{totalNutrients.fiber}g</span>
+                    </div>
+                </div>
             </div>
             {/* Rendering individual food items for breakfast, lunch, dinner, and snack */}
             <div className="quadrant">
                 <h3>Breakfast</h3>
-                <hr />
-                <p>
-                    <strong>Calories: </strong>{breakfastTotal.calories} kcal
-                    <span> | <strong>Protein: </strong>{breakfastTotal.protein}g</span>
-                    <span> | <strong>Fat: </strong>{breakfastTotal.fat}g</span>
-                    <span> | <strong>Carbs: </strong>{breakfastTotal.carb}g</span>
-                    <span> | <strong>Fiber: </strong>{breakfastTotal.fiber}g</span>
-                </p>
-                <hr />
-                <button onClick={() => openSearch('breakfast')}>Add Food</button>
+                <div className="nutrient-breakdown">
+                    <div className="nutrient-section">
+                        <span><strong>Cals: </strong>{breakfastTotal.calories} kcal</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Protein: </strong>{breakfastTotal.protein}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fat: </strong>{breakfastTotal.fat}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Carbs: </strong>{breakfastTotal.carb}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fiber: </strong>{breakfastTotal.fiber}g</span>
+                    </div>
+                </div>
+                <button className='add-food' onClick={() => openSearch('breakfast')}>+</button>
                 <div className='items'>
                     {breakfast.map((food) => (
                         <FoodOverview
@@ -163,16 +190,24 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Lunch</h3>
-                <hr />
-                <p>
-                    <strong>Calories: </strong>{lunchTotal.calories} kcal
-                    <span> | <strong>Protein: </strong>{lunchTotal.protein}g</span>
-                    <span> | <strong>Fat: </strong>{lunchTotal.fat}g</span>
-                    <span> | <strong>Carbs: </strong>{lunchTotal.carb}g</span>
-                    <span> | <strong>Fiber: </strong>{lunchTotal.fiber}g</span>
-                </p>
-                <hr />
-                <button onClick={() => openSearch('lunch')}>Add Food</button>
+                <div className="nutrient-breakdown">
+                    <div className="nutrient-section">
+                        <span><strong>Cals: </strong>{lunchTotal.calories} kcal</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Protein: </strong>{lunchTotal.protein}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fat: </strong>{lunchTotal.fat}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Carbs: </strong>{lunchTotal.carb}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fiber: </strong>{lunchTotal.fiber}g</span>
+                    </div>
+                </div>
+                <button className='add-food' onClick={() => openSearch('lunch')}>+</button>
                 <div className='items'>
                     {lunch.map((food) => (
                         <FoodOverview
@@ -186,16 +221,24 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Dinner</h3>
-                <hr />
-                <p>
-                    <strong>Calories: </strong>{dinnerTotal.calories} kcal
-                    <span> | <strong>Protein: </strong>{dinnerTotal.protein}g</span>
-                    <span> | <strong>Fat: </strong>{dinnerTotal.fat}g</span>
-                    <span> | <strong>Carbs: </strong>{dinnerTotal.carb}g</span>
-                    <span> | <strong>Fiber: </strong>{dinnerTotal.fiber}g</span>
-                </p>
-                <hr />
-                <button onClick={() => openSearch('dinner')}>Add Food</button>
+                <div className="nutrient-breakdown">
+                    <div className="nutrient-section">
+                        <span><strong>Cals: </strong>{dinnerTotal.calories} kcal</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Protein: </strong>{dinnerTotal.protein}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fat: </strong>{dinnerTotal.fat}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Carbs: </strong>{dinnerTotal.carb}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fiber: </strong>{dinnerTotal.fiber}g</span>
+                    </div>
+                </div>
+                <button className='add-food' onClick={() => openSearch('dinner')}>+</button>
                 <div className='items'>
                     {dinner.map((food) => (
                         <FoodOverview
@@ -209,16 +252,24 @@ function Overview({ onOpenSearch, deleteFoodItem, mealLists }) {
             </div>
             <div className="quadrant">
                 <h3>Snack</h3>
-                <hr />
-                <p>
-                    <strong>Calories: </strong>{snackTotal.calories} kcal
-                    <span> | <strong>Protein: </strong>{snackTotal.protein}g</span>
-                    <span> | <strong>Fat: </strong>{snackTotal.fat}g</span>
-                    <span> | <strong>Carbs: </strong>{snackTotal.carb}g</span>
-                    <span> | <strong>Fiber: </strong>{snackTotal.fiber}g</span>
-                </p>
-                <hr />
-                <button onClick={() => openSearch('snack')}>Add Food</button>
+                <div className="nutrient-breakdown">
+                    <div className="nutrient-section">
+                        <span><strong>Cals: </strong>{snackTotal.calories} kcal</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Protein: </strong>{snackTotal.protein}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fat: </strong>{snackTotal.fat}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Carbs: </strong>{snackTotal.carb}g</span>
+                    </div>
+                    <div className="nutrient-section">
+                        <span><strong>Fiber: </strong>{snackTotal.fiber}g</span>
+                    </div>
+                </div>
+                <button className='add-food' onClick={() => openSearch('snack')}>+</button>
                 <div className='items'>
                     {snack.map((food) => (
                         <FoodOverview
